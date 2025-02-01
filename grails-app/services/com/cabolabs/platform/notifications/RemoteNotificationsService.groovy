@@ -7,10 +7,11 @@ import groovyx.net.http.HTTPBuilder
 import grails.util.Holders
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
-import javax.net.ssl.X509Certificate
+import javax.net.ssl.X509TrustManager
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLSession
+import java.security.cert.X509Certificate
 
 @Transactional
 class RemoteNotificationsService {
@@ -58,14 +59,14 @@ class RemoteNotificationsService {
       def context = SSLContext.getInstance("TLS")
       context.init(null, [
          new X509TrustManager() {
-            public X509Certificate[] getAcceptedIssuers() { null }
-            public void checkClientTrusted(X509Certificate[] certs, String authType) {}
-            public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+            X509Certificate[] getAcceptedIssuers() { return null }
+            void checkClientTrusted(X509Certificate[] certs, String authType) {}
+            void checkServerTrusted(X509Certificate[] certs, String authType) {}
          }
       ] as TrustManager[], null)
       
       def hostnameVerifier = new HostnameVerifier() {
-         public boolean verify(String hostname, SSLSession session) { true }
+         boolean verify(String hostname, SSLSession session) { return true }
       }
       
       HttpsURLConnection.setDefaultSSLSocketFactory(context.socketFactory)
