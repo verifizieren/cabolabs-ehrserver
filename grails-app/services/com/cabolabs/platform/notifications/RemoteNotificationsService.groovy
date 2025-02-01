@@ -57,7 +57,7 @@ class RemoteNotificationsService {
 
       if (error)
       {
-         throw new Exception(status)
+         throw new Exception("Remote notification service returned status code: " + status)
       }
 
       return res
