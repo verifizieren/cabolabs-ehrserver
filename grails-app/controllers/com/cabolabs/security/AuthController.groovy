@@ -79,10 +79,10 @@ class AuthController {
          // the user already has a session
       }
 
-
       // read remote notifications
       // Get date of the last read of remote notifications by the current user, null if no reads were done
       // This avoids reading the same notifications twice by the same user
+      /*
       def lastALogs = ActivityLog.findAllByActionAndUsername('remote_notifications', email, [max: 1, sort: 'timestamp', order:'desc'])
       def from
       if (lastALogs.size() > 0) from = lastALogs[0].timestamp
@@ -101,7 +101,7 @@ class AuthController {
 
       // Mark current read of the remote notifications
       new ActivityLog(username: email, action: 'remote_notifications', sessionId: session.id.toString()).save()
-
+      */
       // /remote notifications
 
 
