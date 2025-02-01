@@ -3,6 +3,13 @@ package com.cabolabs.security
 import grails.util.Holders
 import com.cabolabs.ehrserver.reporting.ActivityLog
 import com.cabolabs.ehrserver.notification.Notification
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
+import javax.net.ssl.HttpsURLConnection
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.SSLSession
+import java.security.cert.X509Certificate
 
 class AuthController {
 
